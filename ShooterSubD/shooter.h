@@ -22,7 +22,7 @@
 @property NSDictionary * dict;
 @property NSString * encodedURL;
 @property NSMutableArray * linkType;
-@property NSData * Data;
+@property NSMutableData * Data;
 @property NSURLConnection * connection;
 @property NSString * fileName;
 

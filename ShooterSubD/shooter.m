@@ -27,7 +27,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 - (id)init {
     self = [super init];
     if (self) {
-        Data = [[NSData alloc] init];
+        Data = [[NSMutableData alloc] init];
     }
     
     return self;
@@ -157,21 +157,26 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSError *error = nil;
     
-    
-    BOOL written = [data writeToFile:[fileName stringByRemovingPercentEncoding]
-                             options:0
-                               error:&error];
-    if (!written) {
-        NSLog(@"write failed: %@", [error localizedDescription]);
-    }
+    // About 16 KiB every appending.
+    [Data appendData:data];
+   
     
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
     NSLog(@"connection finish");
+    
+    NSError *error = nil;
+    BOOL written = [Data writeToFile:[fileName stringByRemovingPercentEncoding]
+                             options:0
+                               error:&error];
+    if (!written) {
+        NSLog(@"write failed: %@", [error localizedDescription]);
+    }
+    
+    Data = nil;
 }
 
 @end
