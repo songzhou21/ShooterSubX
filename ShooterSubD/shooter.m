@@ -158,7 +158,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     
-    // About 16 KiB every appending.
+    // Almost 16 KiB every appending.
     [Data appendData:data];
    
     

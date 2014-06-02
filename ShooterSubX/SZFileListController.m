@@ -61,6 +61,9 @@
             [task startDownload:[file fileURL]];
             
         }
+            // Remove file frome fileListView each Downloading process.
+            [fileListArray removeAllObjects];
+            [fileListView reloadData];
     }
 }
 
