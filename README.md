@@ -16,7 +16,7 @@ ShooterSubX
 
 ## With special thanks to:   
 
-- [FileLister]( https://github.com/dwkns) 
+- [FileLister](https://github.com/dwkns/FileLister) 
   
 参考了这个项目的 GUI。
 - [ShooterSubPyDownloader](https://github.com/magic282/ShooterSubPyDownloader) 
