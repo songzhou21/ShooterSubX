@@ -15,6 +15,7 @@
 
 - (IBAction)remove:(id)sender;
 - (IBAction)downloadAll:(id)sender;
+- (IBAction)openHelper:(id)sender;
 
 - (void)fileStuff:(NSArray *)files;
 

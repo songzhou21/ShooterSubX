@@ -21,6 +21,7 @@
 		E469427E193AE7D800BB46F6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E469425D193AE7D800BB46F6 /* Cocoa.framework */; };
 		E4694286193AE7D800BB46F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4694284193AE7D800BB46F6 /* InfoPlist.strings */; };
 		E4694288193AE7D800BB46F6 /* ShooterSubXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4694287193AE7D800BB46F6 /* ShooterSubXTests.m */; };
+		E486A6831942EC33009F9222 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E486A6811942EC33009F9222 /* Localizable.strings */; };
 		E48E0758193B449800E727F4 /* hashMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E074E193B449800E727F4 /* hashMD5.m */; };
 		E48E075A193B449800E727F4 /* NSData_MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E0751193B449800E727F4 /* NSData_MD5.m */; };
 		E48E075B193B449800E727F4 /* NSDictionary+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E0753193B449800E727F4 /* NSDictionary+URLEncode.m */; };
@@ -50,19 +51,22 @@
 		E4694261193AE7D800BB46F6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E4694262193AE7D800BB46F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E4694265193AE7D800BB46F6 /* ShooterSubX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShooterSubX-Info.plist"; sourceTree = "<group>"; };
-		E4694267193AE7D800BB46F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E4694269193AE7D800BB46F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E469426B193AE7D800BB46F6 /* ShooterSubX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShooterSubX-Prefix.pch"; sourceTree = "<group>"; };
-		E469426D193AE7D800BB46F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		E469426F193AE7D800BB46F6 /* SZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZAppDelegate.h; sourceTree = "<group>"; };
 		E4694270193AE7D800BB46F6 /* SZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZAppDelegate.m; sourceTree = "<group>"; };
-		E4694273193AE7D800BB46F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E4694275193AE7D800BB46F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E469427B193AE7D800BB46F6 /* ShooterSubXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShooterSubXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469427C193AE7D800BB46F6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E4694283193AE7D800BB46F6 /* ShooterSubXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShooterSubXTests-Info.plist"; sourceTree = "<group>"; };
-		E4694285193AE7D800BB46F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E4694287193AE7D800BB46F6 /* ShooterSubXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShooterSubXTests.m; sourceTree = "<group>"; };
+		E486A67B1942E96F009F9222 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E486A67C1942E96F009F9222 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		E486A67D1942E96F009F9222 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E486A67E1942E9E4009F9222 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		E486A6801942EB83009F9222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E486A6821942EC33009F9222 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "ShooterSubX/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E486A6841942F4C2009F9222 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		E48E074D193B449800E727F4 /* hashMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashMD5.h; sourceTree = "<group>"; };
 		E48E074E193B449800E727F4 /* hashMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hashMD5.m; sourceTree = "<group>"; };
 		E48E0750193B449800E727F4 /* NSData_MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_MD5.h; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		E4694264193AE7D800BB46F6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E486A6811942EC33009F9222 /* Localizable.strings */,
 				E4694265193AE7D800BB46F6 /* ShooterSubX-Info.plist */,
 				E4694266193AE7D800BB46F6 /* InfoPlist.strings */,
 				E4694269193AE7D800BB46F6 /* main.m */,
@@ -257,6 +262,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E4694251193AE7D800BB46F6;
 			productRefGroup = E469425B193AE7D800BB46F6 /* Products */;
@@ -274,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E486A6831942EC33009F9222 /* Localizable.strings in Resources */,
 				E4694268193AE7D800BB46F6 /* InfoPlist.strings in Resources */,
 				E4694276193AE7D800BB46F6 /* Images.xcassets in Resources */,
 				E469426E193AE7D800BB46F6 /* Credits.rtf in Resources */,
@@ -330,7 +337,7 @@
 		E4694266193AE7D800BB46F6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E4694267193AE7D800BB46F6 /* en */,
+				E486A67B1942E96F009F9222 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -338,7 +345,8 @@
 		E469426C193AE7D800BB46F6 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E469426D193AE7D800BB46F6 /* en */,
+				E486A67C1942E96F009F9222 /* zh-Hans */,
+				E486A6841942F4C2009F9222 /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -346,7 +354,8 @@
 		E4694272193AE7D800BB46F6 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E4694273193AE7D800BB46F6 /* Base */,
+				E486A67E1942E9E4009F9222 /* zh-Hans */,
+				E486A6801942EB83009F9222 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -354,9 +363,18 @@
 		E4694284193AE7D800BB46F6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E4694285193AE7D800BB46F6 /* en */,
+				E486A67D1942E96F009F9222 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E486A6811942EC33009F9222 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E486A6821942EC33009F9222 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -441,6 +459,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShooterSubX/ShooterSubX-Prefix.pch";
 				INFOPLIST_FILE = "ShooterSubX/ShooterSubX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -455,6 +474,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShooterSubX/ShooterSubX-Prefix.pch";
 				INFOPLIST_FILE = "ShooterSubX/ShooterSubX-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

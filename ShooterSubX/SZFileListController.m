@@ -67,6 +67,12 @@
     }
 }
 
+- (IBAction)openHelper:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://gogozs.github.io/projects/ShooterSubX.html"]];
+}
+#pragma mark -- Preferences
+
+
 #pragma mark -- NSTableView protocol methods
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return [fileListArray count];
