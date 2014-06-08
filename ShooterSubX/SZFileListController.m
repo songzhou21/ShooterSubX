@@ -54,11 +54,9 @@
         for (id file in fileListArray) {
             shooter *task = [[shooter alloc] init];
             
-            // Prepare for downloading.
+            // Prepare and start to downloading.
             [task subDownloader:[file fileURL]];
             
-            // Start downloading.
-            [task startDownload:[file fileURL]];
             
         }
             // Remove file frome fileListView each Downloading process.
@@ -70,7 +68,6 @@
 - (IBAction)openHelper:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://gogozs.github.io/projects/ShooterSubX.html"]];
 }
-#pragma mark -- Preferences
 
 
 #pragma mark -- NSTableView protocol methods
