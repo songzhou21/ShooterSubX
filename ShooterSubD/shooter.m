@@ -36,12 +36,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     return self;
 }
 
--(void) postDownloadFinish:(NSURL *) filePath
-{
-    //notification post a notification ThreadFinish with filePath
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"ThreadFinish" object:nil userInfo:userInfo];
-}
+
 
 - (void)subDownloader:(NSURL*) filePath {
     
@@ -96,10 +91,14 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                    }else {
                                        NSLog(@"No jsonObject");
                                    }
-                                   [self startDownload:filePath];
-                                   
-                                   [self performSelectorOnMainThread:@selector(postDownloadFinish:) withObject:filePath waitUntilDone:YES];
-                                   
+                                   if ([self startDownload:filePath])
+                                   {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       //notification post a notification ThreadFinish with filePath
+                                       NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                       [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
+                                   });
+                                   }
                                }];
        
     }else {
@@ -109,7 +108,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 }
 
 
-- (void)startDownload:(NSURL *)filaPath{
+- (BOOL) startDownload:(NSURL *)filaPath{
     BOOL downloaded = false;
     
         for (int i = 0; i < [linkType count]; i++) {
@@ -144,8 +143,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 
             }
         }
-    
-    
+    return downloaded;
 }
 
 - (void)download:(NSString*)URL

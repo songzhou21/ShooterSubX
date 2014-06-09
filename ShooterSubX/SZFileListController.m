@@ -19,16 +19,17 @@
     self = [super init];
     if (self) {
         fileListArray = [[NSMutableArray alloc] init];
+        //add listener to catch the downloadfinish message
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(deleteCorrespondingRow:)
-                                                     name:@"ThreadFinish" object:nil];
+                                                 selector:@selector(getFinishMessage:)
+                                                     name:@"DownloadThreadFinish" object:nil];
     }
     
     return self;
 }
 
-
-- (void) searchInFileArrayList:(NSURL *) fileURL
+#pragma mark -- Deal with downloadFinishMessage
+- (void) deleteTheCorrespondingRowAccordingTo:(NSURL *) fileURL
 {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",fileURL];
     NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
@@ -36,14 +37,15 @@
     [fileListView reloadData];
 }
 
--(void)deleteCorrespondingRow:(NSNotification *)notification
+-(void)getFinishMessage:(NSNotification *)notification
 {
     NSDictionary *userInfo=notification.userInfo;
-    NSURL*fileAddr=[userInfo objectForKey:@"filePath"];
-    [self searchInFileArrayList:fileAddr];
+    NSURL*filePath=[userInfo objectForKey:@"filePath"];
+    [self deleteTheCorrespondingRowAccordingTo:filePath];
 }
 
 
+#pragma mark -- Add file to the fileListArray
 - (void)fileStuff:(NSArray *)files {
     NSLog(@"do something called");
     
@@ -78,9 +80,6 @@
             [task subDownloader:[file fileURL]];
             
         }
-            // Remove file frome fileListView each Downloading process.
-            //[fileListArray removeAllObjects];
-            //[fileListView reloadData];
         
     }
 }

@@ -35,7 +35,7 @@
 - (void)subDownloader:(NSURL*) filePath;
 
 // Start downloading subtitle.
-- (void)startDownload:(NSURL *)filaPath;
+- (BOOL)startDownload:(NSURL *)filaPath;
 
 // Real downloading.
 - (void)download:(NSString *)URL
