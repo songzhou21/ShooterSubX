@@ -68,42 +68,47 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                            queue:queue
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                    
-                                   
-                                   NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                   if (data!=nil)
+                                   {
+                                       NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
                                                                                                 error:nil];
-                                   NSDictionary *files = [[NSDictionary alloc] init];
+                                       NSDictionary *files = [[NSDictionary alloc] init];
                                    
-                                   if (jsonObject) {
+                                       if (jsonObject) {
                                        // For each Subtitle.
-                                       for (NSDictionary *dict1 in jsonObject) {
+                                           for (NSDictionary *dict1 in jsonObject) {
                                            
                                            // For each File cantains link and type info.
-                                           if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
+                                               if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
                                                files= [dict1 objectForKey:@"Files"];
                                                for (NSDictionary *dict2 = [[NSDictionary alloc] init] in files){
                                                    [linkType addObject:dict2];
                                                }
-                                           }else {
-                                               NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
                                            }
+                                           else {
+                                                    NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
+                                                }
+                                           }
+                                       }else {
+                                           NSLog(@"No jsonObject");
                                        }
-                                   }else {
-                                       NSLog(@"No jsonObject");
+                                       if ([self startDownload:filePath])
+                                       {
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               //notification post a notification ThreadFinish with filePath
+                                               NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                               [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
+                                           });
+                                       }
                                    }
-                                   if ([self startDownload:filePath])
-                                   {
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       //notification post a notification ThreadFinish with filePath
-                                       NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-                                       [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
-                                   });
-                                   }
+                                   
                                }];
        
     }else {
         NSLog(@"filePath is nil");
     }
+         
     
 }
 
@@ -116,13 +121,14 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
             
             if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
                 // Start downloading from 'Link', which is get from key 'Ext'.
-                [self download:[dict_l objectForKey:@"Link"]
+                if ([self download:[dict_l objectForKey:@"Link"]
                             filePath:filaPath
-                           extention:@"ass"];
-                // Mark downloaded is ture, if ASS subtitle available.
-                downloaded = true;
-                
-                break;
+                           extention:@"ass"])
+                {
+                    // Mark downloaded is ture, if ASS subtitle available.
+                    downloaded = true;
+                    break;
+                }
             }
             
         }
@@ -133,12 +139,13 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
             NSDictionary *dict_l = [linkType objectAtIndex:i];
 
                 if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
-                    [self download:[dict_l objectForKey:@"Link"]
+                    if ([self download:[dict_l objectForKey:@"Link"]
                                filePath:filaPath
-                               extention:@"srt"];
-                    downloaded = true;
-                    
-                    break;
+                               extention:@"srt"])
+                        {
+                            downloaded = true;
+                            break;
+                        }
                 }
 
             }
@@ -146,7 +153,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     return downloaded;
 }
 
-- (void)download:(NSString*)URL
+- (BOOL)download:(NSString*)URL
         filePath:(NSURL *)filePath
        extention:(NSString *)ext {
     
@@ -165,8 +172,9 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                error:&error];
     if (!written) {
         NSLog(@"write failed: %@", [error localizedDescription]);
+        return false;
     }
-    
+    return true;
 }
 
 
