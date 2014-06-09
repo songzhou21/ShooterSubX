@@ -11,7 +11,7 @@
 #import "shooter.h"
 
 @implementation SZFileListController {
-    
+    unsigned int failCounter;
 }
     
 
@@ -23,10 +23,30 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(getFinishMessage:)
                                                      name:@"DownloadThreadFinish" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(getFailMessage:)
+                                                     name:@"DownloadThreadFail" object:nil];
     }
     
     return self;
 }
+#pragma mark -- Deal with downloadFailMessage
+-(void) getFailMessage:(NSNotification *)notification
+{
+    NSDictionary *userInfo=notification.userInfo;
+    NSURL*filePath=[userInfo objectForKey:@"filePath"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",filePath];
+    NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) failCounter++;
+    if (failCounter==[fileListArray count])
+    {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Download Finish"];
+        [alert runModal];
+    }
+    
+}
+
 
 #pragma mark -- Deal with downloadFinishMessage
 - (void) deleteTheCorrespondingRowAccordingTo:(NSURL *) fileURL
@@ -42,6 +62,12 @@
     NSDictionary *userInfo=notification.userInfo;
     NSURL*filePath=[userInfo objectForKey:@"filePath"];
     [self deleteTheCorrespondingRowAccordingTo:filePath];
+    if ([fileListArray count]==0)
+    {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Download Finish"];
+        [alert runModal];
+    }
 }
 
 
@@ -73,6 +99,7 @@
 
 - (IBAction)downloadAll:(id)sender {
     if ([fileListArray count] > 0) {
+        failCounter=0;
         for (id file in fileListArray) {
             shooter *task = [[shooter alloc] init];
             
