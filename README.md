@@ -22,7 +22,9 @@ ShooterSubX
 - [ShooterSubPyDownloader](https://github.com/magic282/ShooterSubPyDownloader) 
   
 仿照了这个 Python 代码的实现。
-## Contributor:  
+
+## Contributors:  
+
 [whmsysu](https://github.com/whmsysu)
 
 ## Others: 
