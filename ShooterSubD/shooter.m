@@ -36,6 +36,13 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     return self;
 }
 
+-(void) postDownloadFinish:(NSURL *) filePath
+{
+    //notification post a notification ThreadFinish with filePath
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"ThreadFinish" object:nil userInfo:userInfo];
+}
+
 - (void)subDownloader:(NSURL*) filePath {
     
     
@@ -90,6 +97,9 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                        NSLog(@"No jsonObject");
                                    }
                                    [self startDownload:filePath];
+                                   
+                                   [self performSelectorOnMainThread:@selector(postDownloadFinish:) withObject:filePath waitUntilDone:YES];
+                                   
                                }];
        
     }else {
@@ -158,8 +168,6 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     if (!written) {
         NSLog(@"write failed: %@", [error localizedDescription]);
     }
- 
-    
     
 }
 
