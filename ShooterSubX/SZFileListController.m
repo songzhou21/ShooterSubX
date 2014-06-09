@@ -19,11 +19,33 @@
     self = [super init];
     if (self) {
         fileListArray = [[NSMutableArray alloc] init];
+        //add listener to catch the downloadfinish message
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(getFinishMessage:)
+                                                     name:@"DownloadThreadFinish" object:nil];
     }
     
     return self;
 }
 
+#pragma mark -- Deal with downloadFinishMessage
+- (void) deleteTheCorrespondingRowAccordingTo:(NSURL *) fileURL
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",fileURL];
+    NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    [fileListArray removeObject:[result lastObject]];
+    [fileListView reloadData];
+}
+
+-(void)getFinishMessage:(NSNotification *)notification
+{
+    NSDictionary *userInfo=notification.userInfo;
+    NSURL*filePath=[userInfo objectForKey:@"filePath"];
+    [self deleteTheCorrespondingRowAccordingTo:filePath];
+}
+
+
+#pragma mark -- Add file to the fileListArray
 - (void)fileStuff:(NSArray *)files {
     NSLog(@"do something called");
     
@@ -57,13 +79,12 @@
             // Prepare and start to downloading.
             [task subDownloader:[file fileURL]];
             
-            
         }
-            // Remove file frome fileListView each Downloading process.
-            [fileListArray removeAllObjects];
-            [fileListView reloadData];
+        
     }
 }
+
+
 
 - (IBAction)openHelper:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://gogozs.github.io/projects/ShooterSubX.html"]];
