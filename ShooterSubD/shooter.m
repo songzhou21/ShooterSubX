@@ -101,6 +101,14 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                                [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
                                            });
                                        }
+                                       else
+                                       {
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               //notification post a notification ThreadFinish with filePath
+                                               NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                               [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
+                                           });
+                                       }
                                    }
                                    
                                }];
