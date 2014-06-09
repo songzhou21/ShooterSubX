@@ -22,9 +22,11 @@ ShooterSubX
 - [ShooterSubPyDownloader](https://github.com/magic282/ShooterSubPyDownloader) 
   
 仿照了这个 Python 代码的实现。
-  
+## Contributor:  
+[whmsysu](https://github.com/whmsysu)
+
 ## Others: 
 
 - 这是我初次尝试编写 Objective-C 项目，代码比较混乱和不规范，参考需谨慎。
-- 如遇到 bug 可在这里反馈，但不一定能解决……
+- 如遇到 bug 可在这里反馈。
 - Twitter: [@songzhou21](https://twitter.com/songzhou21)
