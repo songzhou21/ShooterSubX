@@ -38,7 +38,7 @@
 - (BOOL)startDownload:(NSURL *)filaPath;
 
 // Real downloading.
-- (void)download:(NSString *)URL
+- (BOOL)download:(NSString *)URL
         filePath:(NSURL *)filePath
        extention:(NSString *)ext;
 
