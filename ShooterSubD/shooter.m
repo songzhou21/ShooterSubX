@@ -58,7 +58,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         // Request URL
         NSURL *url = [NSURL URLWithString: [[NSString stringWithUTF8String:shooterURL]stringByAppendingString:encodedURL]];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
         
         // Initialize an operation queue.
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -67,9 +67,10 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:queue
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                                   
+                                   bool isDownloadSuccessful=false;
                                    if (data!=nil)
                                    {
+                                       
                                        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
                                                                                                 error:nil];
@@ -77,42 +78,52 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                    
                                        if (jsonObject) {
                                        // For each Subtitle.
-                                           for (NSDictionary *dict1 in jsonObject) {
-                                           
+                                           for (NSDictionary *dict1 in jsonObject)
+                                           {
                                            // For each File cantains link and type info.
-                                               if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
-                                               files= [dict1 objectForKey:@"Files"];
-                                               for (NSDictionary *dict2 = [[NSDictionary alloc] init] in files){
-                                                   [linkType addObject:dict2];
+                                               if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]])
+                                               {
+                                                   files= [dict1 objectForKey:@"Files"];
+                                                   for (NSDictionary *dict2 = [[NSDictionary alloc] init] in files)
+                                                   {
+                                                       [linkType addObject:dict2];
+                                                   }
+                                                   if ([self startDownload:filePath])
+                                                   {
+                                                       isDownloadSuccessful=true;
+                                                   }
                                                }
+                                               else {
+                                                        NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
+                                                    }
+                                               
                                            }
-                                           else {
-                                                    NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
-                                                }
-                                           }
+                                           
                                        }else {
                                            NSLog(@"No jsonObject");
                                        }
-                                       if ([self startDownload:filePath])
-                                       {
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               //notification post a notification ThreadFinish with filePath
-                                               NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-                                               [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
-                                           });
-                                       }
-                                       else
-                                       {
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               //notification post a notification ThreadFinish with filePath
-                                               NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-                                               [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
-                                           });
-                                       }
                                    }
-                                   
-                               }];
-       
+                                   if (isDownloadSuccessful)
+                                   {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           //notification post a notification ThreadFinish with filePath
+                                           NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                           [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
+                                       });
+                                       
+                                   }
+                                   else
+                                   {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           //notification post a notification ThreadFinish with filePath
+                                           NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                           [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
+                                       });
+                                       
+                                   }
+                                }];
+    
+        
     }else {
         NSLog(@"filePath is nil");
     }
@@ -174,7 +185,9 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     
     NSData *subData = [NSData dataWithContentsOfURL:downloadURL];
     
-    NSError *error = nil;
+    if (subData==nil) return false;
+    
+    NSError *error=nil;
     BOOL written = [subData writeToURL:[NSURL URLWithString:fileName]
                              options:0
                                error:&error];
