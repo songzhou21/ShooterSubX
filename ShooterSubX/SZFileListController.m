@@ -12,6 +12,7 @@
 
 @implementation SZFileListController {
     unsigned int failCounter;
+    unsigned int successCounter;
 }
     
 
@@ -30,6 +31,17 @@
     
     return self;
 }
+
+#pragma mark -- postTheDownloadNotification
+-(void) postTheFinishNotification
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Sub Download Tasks Finish";
+    notification.informativeText = [NSString stringWithFormat:@"Success:%d  Failure:%d",successCounter,failCounter];
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
 #pragma mark -- Deal with downloadFailMessage
 -(void) getFailMessage:(NSNotification *)notification
 {
@@ -40,9 +52,7 @@
     if ([result count]>0) failCounter++;
     if (failCounter==[fileListArray count])
     {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"Download Finish"];
-        [alert runModal];
+        [self postTheFinishNotification];
     }
     
 }
@@ -53,6 +63,7 @@
 {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",fileURL];
     NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) successCounter++;
     [fileListArray removeObject:[result lastObject]];
     [fileListView reloadData];
 }
@@ -62,11 +73,10 @@
     NSDictionary *userInfo=notification.userInfo;
     NSURL*filePath=[userInfo objectForKey:@"filePath"];
     [self deleteTheCorrespondingRowAccordingTo:filePath];
+    
     if ([fileListArray count]==0)
     {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"Download Finish"];
-        [alert runModal];
+        [self postTheFinishNotification];
     }
 }
 
@@ -100,6 +110,7 @@
 - (IBAction)downloadAll:(id)sender {
     if ([fileListArray count] > 0) {
         failCounter=0;
+        successCounter=0;
         for (id file in fileListArray) {
             shooter *task = [[shooter alloc] init];
             
