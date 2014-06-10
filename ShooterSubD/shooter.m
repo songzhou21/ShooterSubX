@@ -126,8 +126,13 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         
     }else {
         NSLog(@"filePath is nil");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //notification post a notification ThreadFinish with filePath
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+            [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
+        });
     }
-         
+    
     
 }
 
@@ -183,7 +188,11 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     NSLog(@"filenale: %@", fileName);
     NSLog(@"download_url: %@", downloadURL);
     
-    NSData *subData = [NSData dataWithContentsOfURL:downloadURL];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:downloadURL];
+    
+    NSURLResponse * response = nil;
+    NSError * connectionError = nil;
+    NSData*subData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
     
     if (subData==nil) return false;
     
