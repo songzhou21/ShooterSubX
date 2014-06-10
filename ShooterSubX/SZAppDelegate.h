@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "SZFile.h"
 
-@interface SZAppDelegate : NSObject <NSApplicationDelegate>;
+@interface SZAppDelegate : NSObject <NSApplicationDelegate,NSUserNotificationCenterDelegate>;
 
 @property (assign) IBOutlet NSWindow *window;
 

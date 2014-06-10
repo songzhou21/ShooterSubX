@@ -11,7 +11,8 @@
 #import "shooter.h"
 
 @implementation SZFileListController {
-    
+    unsigned int failCounter;
+    unsigned int successCounter;
 }
     
 
@@ -23,16 +24,46 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(getFinishMessage:)
                                                      name:@"DownloadThreadFinish" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(getFailMessage:)
+                                                     name:@"DownloadThreadFail" object:nil];
     }
     
     return self;
 }
+
+#pragma mark -- postTheDownloadNotification
+-(void) postTheFinishNotification
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Sub Download Tasks Finish";
+    notification.informativeText = [NSString stringWithFormat:@"Success:%d  Failure:%d",successCounter,failCounter];
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+#pragma mark -- Deal with downloadFailMessage
+-(void) getFailMessage:(NSNotification *)notification
+{
+    NSDictionary *userInfo=notification.userInfo;
+    NSURL*filePath=[userInfo objectForKey:@"filePath"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",filePath];
+    NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) failCounter++;
+    if (failCounter==[fileListArray count])
+    {
+        [self postTheFinishNotification];
+    }
+    
+}
+
 
 #pragma mark -- Deal with downloadFinishMessage
 - (void) deleteTheCorrespondingRowAccordingTo:(NSURL *) fileURL
 {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",fileURL];
     NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) successCounter++;
     [fileListArray removeObject:[result lastObject]];
     [fileListView reloadData];
 }
@@ -42,6 +73,11 @@
     NSDictionary *userInfo=notification.userInfo;
     NSURL*filePath=[userInfo objectForKey:@"filePath"];
     [self deleteTheCorrespondingRowAccordingTo:filePath];
+    
+    if ([fileListArray count]==0)
+    {
+        [self postTheFinishNotification];
+    }
 }
 
 
@@ -73,6 +109,8 @@
 
 - (IBAction)downloadAll:(id)sender {
     if ([fileListArray count] > 0) {
+        failCounter=0;
+        successCounter=0;
         for (id file in fileListArray) {
             shooter *task = [[shooter alloc] init];
             
