@@ -74,7 +74,7 @@
     NSURL*filePath=[userInfo objectForKey:@"filePath"];
     [self deleteTheCorrespondingRowAccordingTo:filePath];
     
-    if ([fileListArray count]==0)
+    if (failCounter == [fileListArray count])
     {
         [self postTheFinishNotification];
     }
