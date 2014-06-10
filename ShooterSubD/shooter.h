@@ -18,14 +18,14 @@
 @interface shooter : NSObject
 
 
-@property (nonatomic,strong) NSString * videoHash;
-@property (nonatomic,strong) NSDictionary * dict;
-@property (nonatomic,strong) NSString * encodedURL;
-@property (nonatomic,strong) NSURL *downloadURL;
-@property (nonatomic,strong) NSMutableArray * linkType;
-@property (nonatomic,strong) NSMutableData * Data;
+@property  NSString * videoHash;
+@property  NSDictionary * dict;
+@property  NSString * encodedURL;
+@property  NSURL *downloadURL;
+@property  NSMutableArray * linkType;
+@property  NSMutableData * Data;
 //@property NSURLConnection * connection;
-@property (nonatomic,strong) NSString* fileName;
+@property  NSString* fileName;
 
 
 // Shooter subtitle API URL.
