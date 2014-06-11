@@ -37,7 +37,11 @@
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Sub Download Tasks Finish";
+    if (failCounter > 0) {
     notification.informativeText = [NSString stringWithFormat:@"Success:%d  Failure:%d",successCounter,failCounter];
+    } else if (failCounter == 0) {
+    notification.informativeText = [NSString stringWithFormat:@"Success:%d",successCounter];
+    }
     notification.soundName = NSUserNotificationDefaultSoundName;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
