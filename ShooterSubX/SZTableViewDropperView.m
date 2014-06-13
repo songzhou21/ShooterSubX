@@ -14,6 +14,7 @@
 
 - (void)awakeFromNib {
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
+	[self setAllowsMultipleSelection:YES];
 }
 
 // Stop the NSTableView implementation geeting in the way.
