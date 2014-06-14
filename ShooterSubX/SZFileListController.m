@@ -146,6 +146,7 @@
 #pragma mark -- NSTableView sorting methods
 - (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
 {
+	//this function answers which sortDescriptor is used in the table.
     [fileListArray sortUsingDescriptors:[aTableView sortDescriptors]];
     [aTableView reloadData];
 }
