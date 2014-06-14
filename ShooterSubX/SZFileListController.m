@@ -103,12 +103,14 @@
 
 #pragma mark -- Actions
 - (IBAction)remove:(id)sender {
-    NSInteger selectedRow = [fileListView selectedRow];
-    
-    if (selectedRow >= 0) {
-        [fileListArray removeObjectAtIndex:selectedRow];
-        [fileListView reloadData];
-    }
+    NSIndexSet * selectedRows=[fileListView selectedRowIndexes];
+	if ([selectedRows count]>0)
+	{
+		[fileListArray removeObjectsAtIndexes:selectedRows];
+		[fileListView deselectAll:nil];
+		[fileListView reloadData];
+	}
+	
 }
 
 - (IBAction)downloadAll:(id)sender {
