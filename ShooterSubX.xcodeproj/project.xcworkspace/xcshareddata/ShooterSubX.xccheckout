@@ -5,7 +5,11 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>B2AFAE87-734A-477E-9BC7-D20AAA68FEF4</string>
+=======
+	<string>9AE9A9C9-5987-4638-8733-867D2A278303</string>
+>>>>>>> pr/11
 	<key>IDESourceControlProjectName</key>
 	<string>ShooterSubX</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>

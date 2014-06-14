@@ -46,7 +46,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     
     // Calculate the hash value of file.
     if (filePath) {
-        videoHash = [hm hash_MD5:filePath];
+		videoHash = [hm hash_MD5:filePath];
         
         
         dict = [NSDictionary dictionaryWithObjectsAndKeys:@"json", @"format",
@@ -59,7 +59,6 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         NSURL *url = [NSURL URLWithString: [[NSString stringWithUTF8String:shooterURL]stringByAppendingString:encodedURL]];
         
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        
         // Initialize an operation queue.
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
@@ -70,7 +69,6 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                    bool isDownloadSuccessful=false;
                                    if (data!=nil)
                                    {
-                                       
                                        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
                                                                                                 error:nil];
@@ -126,11 +124,6 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         
     }else {
         NSLog(@"filePath is nil");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //notification post a notification ThreadFinish with filePath
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-            [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
-        });
     }
     
     
@@ -194,8 +187,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     NSError * connectionError = nil;
     NSData*subData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
     
-    if (subData==nil) return false;
-    
+	if (subData==nil) return false;
     NSError *error=nil;
     BOOL written = [subData writeToURL:[NSURL URLWithString:fileName]
                              options:0
