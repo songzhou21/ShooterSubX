@@ -14,7 +14,7 @@ ShooterSubX
 - 点击 `Download all` 下载字幕。
 
 ## Download:
-请移步[Releases](https://github.com/gogozs/ShooterSubX/releases)
+请移步 [Releases](https://github.com/gogozs/ShooterSubX/releases)
 
 ## With special thanks to:   
 
