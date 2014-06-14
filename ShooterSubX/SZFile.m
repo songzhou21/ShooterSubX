@@ -25,7 +25,7 @@
     
     // Convert the filesize attribute to a bytes / KB / MB formatted string.
     _fileSize = [NSByteCountFormatter stringFromByteCount:[attribs fileSize] countStyle:NSByteCountFormatterCountStyleFile];
-    
+    _fileBytes=[NSNumber numberWithUnsignedLong:[attribs fileSize]];
     _fileName = _fileURL.lastPathComponent;
     
 }
