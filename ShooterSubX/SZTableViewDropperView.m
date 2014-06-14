@@ -15,6 +15,18 @@
 - (void)awakeFromNib {
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 	[self setAllowsMultipleSelection:YES];
+	
+	//Add sortDescriptor for each col.The first sort descript is for filename sorting, the second one is for filesize sorting
+	NSSortDescriptor *filenameSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileName" ascending:YES];
+	NSSortDescriptor *filesizeSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileBytes" ascending:YES];
+	
+	[[self.tableColumns objectAtIndex:0] setSortDescriptorPrototype:filenameSortDescriptor];
+	[[self.tableColumns objectAtIndex:1] setSortDescriptorPrototype:filesizeSortDescriptor];
+	
+	//do not allow col selecting, but users can resize col for each col
+	[self setAllowsColumnSelection:NO];
+	[self setAllowsColumnResizing:YES];
+	
 }
 
 // Stop the NSTableView implementation geeting in the way.
