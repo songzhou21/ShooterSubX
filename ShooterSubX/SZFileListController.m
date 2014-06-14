@@ -143,6 +143,12 @@
     return [p valueForKey:identifier];
 }
 
+#pragma mark -- NSTableView sorting methods
+- (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+    [fileListArray sortUsingDescriptors:[aTableView sortDescriptors]];
+    [aTableView reloadData];
+}
 
 
 @end

@@ -15,6 +15,14 @@
 - (void)awakeFromNib {
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 	[self setAllowsMultipleSelection:YES];
+	
+	NSSortDescriptor *filenameSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileName" ascending:YES];
+	NSSortDescriptor *filesizeSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileSize" ascending:YES];
+	[[self.tableColumns objectAtIndex:0] setSortDescriptorPrototype:filenameSortDescriptor];
+	[[self.tableColumns objectAtIndex:1] setSortDescriptorPrototype:filesizeSortDescriptor];
+	[self setAllowsColumnSelection:NO];
+	[self setAllowsColumnResizing:YES];
+	
 }
 
 // Stop the NSTableView implementation geeting in the way.
