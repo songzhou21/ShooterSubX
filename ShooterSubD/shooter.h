@@ -24,7 +24,6 @@
 @property  NSURL *downloadURL;
 @property  NSMutableArray * linkType;
 @property  NSMutableData * Data;
-//@property NSURLConnection * connection;
 @property  NSString* fileName;
 
 

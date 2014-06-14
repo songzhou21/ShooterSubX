@@ -37,6 +37,9 @@
 #pragma mark -- traverse directory
 -(NSMutableArray *) getAllFilenameIn:(NSMutableArray *) pasteFilenames
 {
+    // Acceptable video extention names.
+    NSArray *vExt = [NSArray arrayWithObjects:@"MKV", @"MOV", @"MP4", @"RMVB", @"AVI", @"MPEG", @"MPG",@"TS", nil];
+    
 	NSMutableArray *filenames =[[NSMutableArray alloc] init];
 	for (int i=0;i<[pasteFilenames count];i++)
 	{
@@ -68,14 +71,22 @@
 				else
 				{
 					//if this nextLayerFilename is a file, just add it to the result filename array
-					[filenames addObject:nextLayerFilename];
+                    // If the file's extension is qualified to the definition of video.
+                    ([vExt containsObject:[[nextLayerFilename pathExtension] uppercaseString]])?
+					[filenames addObject:nextLayerFilename]:
+                    NSLog(@"Not acceptable video extention: %@", [nextLayerFilename pathExtension]);
+                    
 				}
 			}
 		}
 		else
 		{
 			//if the original filenamep[i] is a file, just add it to the result filename array
-			[filenames addObject:[pasteFilenames objectAtIndex:i]];
+            // If the file's extension is qualified to the definition of video.
+            ([vExt containsObject:[[[pasteFilenames objectAtIndex:i] pathExtension] uppercaseString]])?
+              [filenames addObject:[pasteFilenames objectAtIndex:i]]:
+            NSLog(@"Not acceptable video extention: %@", [[pasteFilenames objectAtIndex:i] pathExtension]);
+           
 		}
 	}
 	return filenames;

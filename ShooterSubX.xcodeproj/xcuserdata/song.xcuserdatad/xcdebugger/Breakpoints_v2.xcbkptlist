@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShooterSubX/SZTableViewDropperView.m"
-            timestampString = "423314077.806511"
+            timestampString = "424424023.222581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-getAllFilenameIn:"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-draggingUpdated:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,9 +11,6 @@
 @implementation SZFile
 
 - (void)creatFromFilePathString:(NSString *)fileNameString {
-    
-    // Convert the String to a escaped / encoded string.
-    
     // Create a URL from the encoded string.
     _fileURL = [NSURL fileURLWithPath:fileNameString];
     NSLog(@"_fileURL: %@", _fileURL);
