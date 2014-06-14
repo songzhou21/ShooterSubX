@@ -17,7 +17,8 @@
 	[self setAllowsMultipleSelection:YES];
 	
 	NSSortDescriptor *filenameSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileName" ascending:YES];
-	NSSortDescriptor *filesizeSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileSize" ascending:YES];
+	NSSortDescriptor *filesizeSortDescriptor=[NSSortDescriptor sortDescriptorWithKey:@"fileBytes" ascending:YES];
+	
 	[[self.tableColumns objectAtIndex:0] setSortDescriptorPrototype:filenameSortDescriptor];
 	[[self.tableColumns objectAtIndex:1] setSortDescriptorPrototype:filesizeSortDescriptor];
 	[self setAllowsColumnSelection:NO];
