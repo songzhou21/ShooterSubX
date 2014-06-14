@@ -6,7 +6,7 @@
   Copyright (c) 2014年 SongZhou. All rights reserved.
 */
 
-"DOWNLOAD_FINISH" = "字幕下载完成";
-"FAILURE" = "成功: %d  失败: %d";
-"SUCCESS" = "成功: %d";
+"DOWNLOAD_FINISH" = "Sub Download Finish";
+"FAILURE" = "Success: %d  Failure: %d";
+"SUCCESS" = "Success: %d";
 

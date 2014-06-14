@@ -36,11 +36,11 @@
 -(void) postTheFinishNotification
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"Sub Download Tasks Finish";
+    notification.title = NSLocalizedString(@"DOWNLOAD_FINISH", @"sub download finish");
     if (failCounter > 0) {
-    notification.informativeText = [NSString stringWithFormat:@"Success:%d  Failure:%d",successCounter,failCounter];
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"FAILURE", @"success: %d failure %d"),successCounter,failCounter];
     } else if (failCounter == 0) {
-    notification.informativeText = [NSString stringWithFormat:@"Success:%d",successCounter];
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"SUCCESS", @"success: %d"),successCounter];
     }
     notification.soundName = NSUserNotificationDefaultSoundName;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];

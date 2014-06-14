@@ -75,6 +75,7 @@
 		E48E0753193B449800E727F4 /* NSDictionary+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URLEncode.m"; sourceTree = "<group>"; };
 		E48E0754193B449800E727F4 /* shooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shooter.h; sourceTree = "<group>"; };
 		E48E0755193B449800E727F4 /* shooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shooter.m; sourceTree = "<group>"; };
+		E4E98CF5194C021900D8F075 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +373,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E486A6821942EC33009F9222 /* zh-Hans */,
+				E4E98CF5194C021900D8F075 /* en */,
 			);
 			name = Localizable.strings;
 			path = ..;
