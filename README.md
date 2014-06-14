@@ -10,9 +10,11 @@ ShooterSubX
 
 ## Usage:
 
-- 把视频拖进程序窗口内（可以选择多个视频文件）。
+- 把视频拖进程序窗口内（可以选择多个视频文件或文件夹）。
 - 点击 `Download all` 下载字幕。
-- 在选择的视频目录下可以找到字幕。
+
+## Download:
+请移步[Releases](https://github.com/gogozs/ShooterSubX/releases)
 
 ## With special thanks to:   
 
@@ -29,6 +31,5 @@ ShooterSubX
 
 ## Others: 
 
-- 这是我初次尝试编写 Objective-C 项目，代码比较混乱和不规范，参考需谨慎。
 - 如遇到 bug 可在这里反馈。
 - Twitter: [@songzhou21](https://twitter.com/songzhou21)
