@@ -131,17 +131,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="550" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-<<<<<<< HEAD
-                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-rX-70e">
-                        <rect key="frame" x="0.0" y="45" width="551" height="300"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" misplaced="YES" id="Ee8-q6-DgN">
-                            <rect key="frame" x="1" y="17" width="549" height="282"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="W95-o2-D01" id="pbH-Dr-Dsa" userLabel="Table View Dropper" customClass="SZTableViewDropperView">
-                                    <rect key="frame" x="0.0" y="0.0" width="549" height="282"/>
-=======
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-rX-70e">
                         <rect key="frame" x="0.0" y="40" width="550" height="305"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -151,17 +140,12 @@
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="W95-o2-D01" id="pbH-Dr-Dsa" userLabel="Table View Dropper" customClass="SZTableViewDropperView">
                                     <rect key="frame" x="0.0" y="0.0" width="548" height="287"/>
->>>>>>> pr/15
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-<<<<<<< HEAD
-                                        <tableColumn identifier="fileName" width="468.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
-=======
                                         <tableColumn identifier="fileName" width="467.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
->>>>>>> pr/15
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -205,11 +189,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="W95-o2-D01">
-<<<<<<< HEAD
-                            <rect key="frame" x="0.0" y="0.0" width="549" height="17"/>
-=======
                             <rect key="frame" x="0.0" y="0.0" width="548" height="17"/>
->>>>>>> pr/15
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>

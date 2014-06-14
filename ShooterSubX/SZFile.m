@@ -13,7 +13,6 @@
 - (void)creatFromFilePathString:(NSString *)fileNameString {
     
     // Convert the String to a escaped / encoded string.
-//    fileNameString = [fileNameString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     // Create a URL from the encoded string.
     _fileURL = [NSURL fileURLWithPath:fileNameString];

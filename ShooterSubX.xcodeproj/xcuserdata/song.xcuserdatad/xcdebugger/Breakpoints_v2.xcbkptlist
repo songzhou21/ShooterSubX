@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "-prepareForDragOperation:"
+            landmarkName = "-getAllFilenameIn:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShooterSubX/SZFile.m"
-            timestampString = "423893623.915877"
+            timestampString = "424410875.452154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "-creatFromFilePathString:"
             landmarkType = "5">
          </BreakpointContent>
