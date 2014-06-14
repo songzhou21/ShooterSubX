@@ -131,21 +131,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="550" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-rX-70e">
-                        <rect key="frame" x="0.0" y="45" width="535" height="300"/>
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-rX-70e">
+                        <rect key="frame" x="0.0" y="40" width="550" height="305"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" misplaced="YES" id="Ee8-q6-DgN">
-                            <rect key="frame" x="1" y="17" width="533" height="282"/>
+                        <clipView key="contentView" id="Ee8-q6-DgN">
+                            <rect key="frame" x="1" y="17" width="548" height="287"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="W95-o2-D01" id="pbH-Dr-Dsa" userLabel="Table View Dropper" customClass="SZTableViewDropperView">
-                                    <rect key="frame" x="0.0" y="0.0" width="533" height="282"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="548" height="287"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="fileName" width="452.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
+                                        <tableColumn identifier="fileName" width="467.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -189,12 +189,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="W95-o2-D01">
-                            <rect key="frame" x="0.0" y="0.0" width="533" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="548" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
-                        <rect key="frame" x="4" y="8" width="122" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
+                        <rect key="frame" x="4" y="3" width="122" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Remove item" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VC5-bm-GaI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -204,8 +204,8 @@
                             <action selector="remove:" target="a3p-nF-DZr" id="r2S-8p-IZD"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
-                        <rect key="frame" x="409" y="8" width="122" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
+                        <rect key="frame" x="424" y="3" width="122" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Download all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8HP-kE-0MT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -228,13 +228,5 @@
                 </constraints>
             </view>
         </window>
-        <button verticalHuggingPriority="750" id="pVS-H6-Cct">
-            <rect key="frame" x="0.0" y="0.0" width="122" height="19"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <buttonCell key="cell" type="roundRect" title="Round Rect Button" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eSk-Di-Jo6">
-                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                <font key="font" metaFont="cellTitle"/>
-            </buttonCell>
-        </button>
     </objects>
 </document>
