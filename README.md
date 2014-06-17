@@ -28,8 +28,3 @@ ShooterSubX
 ## Contributors:  
 
 [whmsysu](https://github.com/whmsysu)
-
-## Others: 
-
-- 如遇到 bug 可在这里反馈。
-- Twitter: [@songzhou21](https://twitter.com/songzhou21)
