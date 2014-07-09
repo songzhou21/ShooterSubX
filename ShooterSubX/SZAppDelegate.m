@@ -7,6 +7,7 @@
 //
 
 #import "SZAppDelegate.h"
+#import "PreferenceController.h"
 
 @implementation SZAppDelegate
 
@@ -21,5 +22,25 @@
     return YES;
 }
 
+-(IBAction)showPreferencePanel:(id)sender {
+    if (!preferenceController) {
+        preferenceController = [[PreferenceController alloc] init];
+    }
+    
+    NSLog(@"showing %@", preferenceController);
+    [preferenceController showWindow:self];
+    
+}
+
+// Register for user defaults keys.
++(void)initialize {
+    // Create a dictionary.
+    NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+    // Set object and key for defaultValues.
+    [defaultValues setObject:[NSString stringWithFormat:@"ASS"] forKey:SZSubTypeKey];
+    // Register defaultValues dictionary.
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+    NSLog(@"registered defaults: %@", defaultValues);
+}
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import "shooter.h"
+#import "PreferenceController.h"
 
 @implementation shooter
 
@@ -86,15 +87,18 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
                                                    {
                                                        [linkType addObject:dict2];
                                                    }
-                                                   if ([self startDownload:filePath])
-                                                   {
-                                                       isDownloadSuccessful=true;
-                                                   }
                                                }
                                                else {
                                                         NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
-                                                    }
+                                                }
                                                
+                                           }
+                                           int i = 0;
+                                           while (i < [linkType count] ) {
+                                              if ([self startDownload:filePath]) {
+                                               isDownloadSuccessful=true;
+                                               }
+                                               i++;
                                            }
                                            
                                        }else {
@@ -133,14 +137,55 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 - (BOOL) startDownload:(NSURL *)filaPath{
     BOOL downloaded = false;
     
+    if ([[PreferenceController preferenceSubType]isEqual: @"ASS"]
+        | [[PreferenceController preferenceSubType] isEqual:@"BOTH"]) {
+        NSLog(@"ass or both is called");
+            for (int i = 0; i < [linkType count]; i++) {
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+                
+                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
+                    // Start downloading from 'Link', which is get from key 'Ext'.
+                    if ([self download:[dict_l objectForKey:@"Link"]
+                                filePath:filaPath
+                               extention:@"ass"])
+                    {
+                        // Mark downloaded is ture, if ASS subtitle available.
+                        downloaded = true;
+                        break;
+                    }
+                }
+                
+            }
+        
+        // If ASS subtitle is not available.
+            if (!downloaded | [[PreferenceController preferenceSubType] isEqual:@"BOTH"]) {
+            NSLog(@"srt in ass or both is called %d",downloaded);
+                for (int i = 0; i < [linkType count]; i++) {
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+
+                    if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
+                        if ([self download:[dict_l objectForKey:@"Link"]
+                                   filePath:filaPath
+                                   extention:@"srt"])
+                            {
+                                downloaded = true;
+                                break;
+                            }
+                    }
+
+                }
+            }
+        
+    } else if ([[PreferenceController preferenceSubType]isEqual:@"SRT"]) {
+        NSLog(@"srt is called");
         for (int i = 0; i < [linkType count]; i++) {
             NSDictionary *dict_l = [linkType objectAtIndex:i];
             
-            if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
+            if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
                 // Start downloading from 'Link', which is get from key 'Ext'.
                 if ([self download:[dict_l objectForKey:@"Link"]
-                            filePath:filaPath
-                           extention:@"ass"])
+                          filePath:filaPath
+                         extention:@"srt"])
                 {
                     // Mark downloaded is ture, if ASS subtitle available.
                     downloaded = true;
@@ -149,24 +194,26 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
             }
             
         }
-    
-    // If ASS subtitle is not available.
+        
+        // If SRT subtitle is not available.
         if (!downloaded) {
+            NSLog(@"ass in srt is called");
             for (int i = 0; i < [linkType count]; i++) {
-            NSDictionary *dict_l = [linkType objectAtIndex:i];
-
-                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+                
+                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
                     if ([self download:[dict_l objectForKey:@"Link"]
-                               filePath:filaPath
-                               extention:@"srt"])
-                        {
-                            downloaded = true;
-                            break;
-                        }
+                              filePath:filaPath
+                             extention:@"ass"])
+                    {
+                        downloaded = true;
+                        break;
+                    }
                 }
-
+                
             }
         }
+    }
     return downloaded;
 }
 

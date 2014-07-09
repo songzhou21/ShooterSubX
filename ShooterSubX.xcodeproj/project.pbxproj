@@ -10,6 +10,8 @@
 		E40A82FB193AF2D800FEEC60 /* SZFileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A82FA193AF2D800FEEC60 /* SZFileListController.m */; };
 		E40A82FE193AF4C700FEEC60 /* SZFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A82FD193AF4C700FEEC60 /* SZFile.m */; };
 		E40A8301193AFE5D00FEEC60 /* SZTableViewDropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8300193AFE5D00FEEC60 /* SZTableViewDropperView.m */; };
+		E44F8B95196D0D72001BE7E5 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44F8B94196D0D72001BE7E5 /* PreferenceController.m */; };
+		E44F8B98196D1DA8001BE7E5 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44F8B9A196D1DA8001BE7E5 /* Preferences.xib */; };
 		E469425E193AE7D800BB46F6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E469425D193AE7D800BB46F6 /* Cocoa.framework */; };
 		E4694268193AE7D800BB46F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4694266193AE7D800BB46F6 /* InfoPlist.strings */; };
 		E469426A193AE7D800BB46F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4694269193AE7D800BB46F6 /* main.m */; };
@@ -45,6 +47,10 @@
 		E40A82FD193AF4C700FEEC60 /* SZFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZFile.m; sourceTree = "<group>"; };
 		E40A82FF193AFE5D00FEEC60 /* SZTableViewDropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTableViewDropperView.h; sourceTree = "<group>"; };
 		E40A8300193AFE5D00FEEC60 /* SZTableViewDropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTableViewDropperView.m; sourceTree = "<group>"; };
+		E44F8B93196D0D72001BE7E5 /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
+		E44F8B94196D0D72001BE7E5 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
+		E44F8B99196D1DA8001BE7E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
+		E44F8B9E196D3F0D001BE7E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.xib"; sourceTree = "<group>"; };
 		E469425A193AE7D800BB46F6 /* ShooterSubX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShooterSubX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E469425D193AE7D800BB46F6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E4694260193AE7D800BB46F6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -144,12 +150,15 @@
 			children = (
 				E469426F193AE7D800BB46F6 /* SZAppDelegate.h */,
 				E4694270193AE7D800BB46F6 /* SZAppDelegate.m */,
+				E44F8B93196D0D72001BE7E5 /* PreferenceController.h */,
+				E44F8B94196D0D72001BE7E5 /* PreferenceController.m */,
 				E40A82F9193AF2D800FEEC60 /* SZFileListController.h */,
 				E40A82FA193AF2D800FEEC60 /* SZFileListController.m */,
 				E40A82FC193AF4C700FEEC60 /* SZFile.h */,
 				E40A82FD193AF4C700FEEC60 /* SZFile.m */,
 				E40A82FF193AFE5D00FEEC60 /* SZTableViewDropperView.h */,
 				E40A8300193AFE5D00FEEC60 /* SZTableViewDropperView.m */,
+				E44F8B9A196D1DA8001BE7E5 /* Preferences.xib */,
 				E4694272193AE7D800BB46F6 /* MainMenu.xib */,
 				E4694275193AE7D800BB46F6 /* Images.xcassets */,
 				E4694264193AE7D800BB46F6 /* Supporting Files */,
@@ -285,6 +294,7 @@
 				E4694268193AE7D800BB46F6 /* InfoPlist.strings in Resources */,
 				E4694276193AE7D800BB46F6 /* Images.xcassets in Resources */,
 				E469426E193AE7D800BB46F6 /* Credits.rtf in Resources */,
+				E44F8B98196D1DA8001BE7E5 /* Preferences.xib in Resources */,
 				E4694274193AE7D800BB46F6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +316,7 @@
 			files = (
 				E48E075C193B449800E727F4 /* shooter.m in Sources */,
 				E40A8301193AFE5D00FEEC60 /* SZTableViewDropperView.m in Sources */,
+				E44F8B95196D0D72001BE7E5 /* PreferenceController.m in Sources */,
 				E40A82FE193AF4C700FEEC60 /* SZFile.m in Sources */,
 				E48E0758193B449800E727F4 /* hashMD5.m in Sources */,
 				E469426A193AE7D800BB46F6 /* main.m in Sources */,
@@ -335,6 +346,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E44F8B9A196D1DA8001BE7E5 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E44F8B99196D1DA8001BE7E5 /* en */,
+				E44F8B9E196D3F0D001BE7E5 /* zh-Hans */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
 		E4694266193AE7D800BB46F6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -131,7 +131,7 @@
 
 
 - (IBAction)openHelper:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://gogozs.github.io/projects/ShooterSubX.html"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/gogozs/ShooterSubX"]];
 }
 
 
