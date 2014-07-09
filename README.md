@@ -1,11 +1,12 @@
 ShooterSubX
 ===========
-<<<<<<< HEAD
+
 ## Features:
 
 - 利用射手网 API 下载字幕。
-- 优先选择 ASS 扩展名的字幕，如果没有则下载 SRT 扩展名的字幕。
+- 可设置下载字幕优先级。
 - 支持多视频字幕一起下载。
+- 可拖拽文件夹到程序主窗口。
 - 不会下载有延迟的字幕。
 - 下载的字幕在所选择的视频目录下。
 
@@ -17,11 +18,11 @@ ShooterSubX
 ## Download:
 请移步 [Releases](https://github.com/gogozs/ShooterSubX/releases)
 =======
-## States:
-这是开发者分支，项目详情请移步 [master](https://github.com/gogozs/ShooterSubX/tree/master)
->>>>>>> origin/develop
 
 ## With special thanks to:   
+- [Shooter.cn](shooter.cn)
+
+感谢射手网提供的 API
 
 - [FileLister](https://github.com/dwkns/FileLister) 
 
@@ -34,7 +35,4 @@ ShooterSubX
 ## Contributors:  
 
 [whmsysu](https://github.com/whmsysu)
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/develop
