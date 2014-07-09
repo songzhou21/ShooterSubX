@@ -11,7 +11,8 @@
 #import "shooter.h"
 
 @implementation SZFileListController {
-    
+    unsigned int failCounter;
+    unsigned int successCounter;
 }
     
 
@@ -23,16 +24,50 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(getFinishMessage:)
                                                      name:@"DownloadThreadFinish" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(getFailMessage:)
+                                                     name:@"DownloadThreadFail" object:nil];
     }
     
     return self;
 }
+
+#pragma mark -- postTheDownloadNotification
+-(void) postTheFinishNotification
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = NSLocalizedString(@"DOWNLOAD_FINISH", @"sub download finish");
+    if (failCounter > 0) {
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"FAILURE", @"success: %d failure %d"),successCounter,failCounter];
+    } else if (failCounter == 0) {
+    notification.informativeText = [NSString stringWithFormat:NSLocalizedString(@"SUCCESS", @"success: %d"),successCounter];
+    }
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+#pragma mark -- Deal with downloadFailMessage
+-(void) getFailMessage:(NSNotification *)notification
+{
+    NSDictionary *userInfo=notification.userInfo;
+    NSURL*filePath=[userInfo objectForKey:@"filePath"];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",filePath];
+    NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) failCounter++;
+    if (failCounter==[fileListArray count])
+    {
+        [self postTheFinishNotification];
+    }
+    
+}
+
 
 #pragma mark -- Deal with downloadFinishMessage
 - (void) deleteTheCorrespondingRowAccordingTo:(NSURL *) fileURL
 {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.fileURL= %@",fileURL];
     NSArray *result=[fileListArray filteredArrayUsingPredicate:pred];
+    if ([result count]>0) successCounter++;
     [fileListArray removeObject:[result lastObject]];
     [fileListView reloadData];
 }
@@ -42,6 +77,11 @@
     NSDictionary *userInfo=notification.userInfo;
     NSURL*filePath=[userInfo objectForKey:@"filePath"];
     [self deleteTheCorrespondingRowAccordingTo:filePath];
+    
+    if (failCounter == [fileListArray count])
+    {
+        [self postTheFinishNotification];
+    }
 }
 
 
@@ -63,16 +103,20 @@
 
 #pragma mark -- Actions
 - (IBAction)remove:(id)sender {
-    NSInteger selectedRow = [fileListView selectedRow];
-    
-    if (selectedRow >= 0) {
-        [fileListArray removeObjectAtIndex:selectedRow];
-        [fileListView reloadData];
-    }
+    NSIndexSet * selectedRows=[fileListView selectedRowIndexes];
+	if ([selectedRows count]>0)
+	{
+		[fileListArray removeObjectsAtIndexes:selectedRows];
+		[fileListView deselectAll:nil];
+		[fileListView reloadData];
+	}
+	
 }
 
 - (IBAction)downloadAll:(id)sender {
     if ([fileListArray count] > 0) {
+        failCounter=0;
+        successCounter=0;
         for (id file in fileListArray) {
             shooter *task = [[shooter alloc] init];
             
@@ -87,7 +131,7 @@
 
 
 - (IBAction)openHelper:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"http://gogozs.github.io/projects/ShooterSubX.html"]];
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://github.com/gogozs/ShooterSubX"]];
 }
 
 
@@ -103,6 +147,13 @@
     return [p valueForKey:identifier];
 }
 
+#pragma mark -- NSTableView sorting methods
+- (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+	//this function answers which sortDescriptor is used in the table.
+    [fileListArray sortUsingDescriptors:[aTableView sortDescriptors]];
+    [aTableView reloadData];
+}
 
 
 @end

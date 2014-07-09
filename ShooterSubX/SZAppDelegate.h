@@ -9,8 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "SZFile.h"
 
-@interface SZAppDelegate : NSObject <NSApplicationDelegate>;
+@class PreferenceController;
+
+@interface SZAppDelegate : NSObject <NSApplicationDelegate,NSUserNotificationCenterDelegate> {
+    PreferenceController *preferenceController;
+}
 
 @property (assign) IBOutlet NSWindow *window;
+
+// Preference Action methods.
+-(IBAction)showPreferencePanel:(id)sender;
 
 @end

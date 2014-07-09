@@ -7,6 +7,7 @@
 //
 
 #import "shooter.h"
+#import "PreferenceController.h"
 
 @implementation shooter
 
@@ -46,7 +47,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     
     // Calculate the hash value of file.
     if (filePath) {
-        videoHash = [hm hash_MD5:filePath];
+		videoHash = [hm hash_MD5:filePath];
         
         
         dict = [NSDictionary dictionaryWithObjectsAndKeys:@"json", @"format",
@@ -58,8 +59,7 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         // Request URL
         NSURL *url = [NSURL URLWithString: [[NSString stringWithUTF8String:shooterURL]stringByAppendingString:encodedURL]];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
         // Initialize an operation queue.
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
@@ -67,43 +67,69 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:queue
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                                   
-                                   
-                                   NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                   bool isDownloadSuccessful=false;
+                                   if (data!=nil)
+                                   {
+                                       NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                                                               options:0
                                                                                                 error:nil];
-                                   NSDictionary *files = [[NSDictionary alloc] init];
+                                       NSDictionary *files = [[NSDictionary alloc] init];
                                    
-                                   if (jsonObject) {
+                                       if (jsonObject) {
                                        // For each Subtitle.
-                                       for (NSDictionary *dict1 in jsonObject) {
-                                           
+                                           for (NSDictionary *dict1 in jsonObject)
+                                           {
                                            // For each File cantains link and type info.
-                                           if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]]) {
-                                               files= [dict1 objectForKey:@"Files"];
-                                               for (NSDictionary *dict2 = [[NSDictionary alloc] init] in files){
-                                                   [linkType addObject:dict2];
+                                               if ([[dict1 objectForKey:@"Delay"]isEqualToNumber:[NSNumber numberWithInt:0]])
+                                               {
+                                                   files= [dict1 objectForKey:@"Files"];
+                                                   for (NSDictionary *dict2 = [[NSDictionary alloc] init] in files)
+                                                   {
+                                                       [linkType addObject:dict2];
+                                                   }
                                                }
-                                           }else {
-                                               NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
+                                               else {
+                                                        NSLog(@"delay too much, delay:%@", [dict1 objectForKey:@"Delay"]);
+                                                }
+                                               
                                            }
+                                           int i = 0;
+                                           while (i < [linkType count] ) {
+                                              if ([self startDownload:filePath]) {
+                                               isDownloadSuccessful=true;
+                                               }
+                                               i++;
+                                           }
+                                           
+                                       }else {
+                                           NSLog(@"No jsonObject");
                                        }
-                                   }else {
-                                       NSLog(@"No jsonObject");
                                    }
-                                   if ([self startDownload:filePath])
+                                   if (isDownloadSuccessful)
                                    {
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       //notification post a notification ThreadFinish with filePath
-                                       NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
-                                       [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
-                                   });
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           //notification post a notification ThreadFinish with filePath
+                                           NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                           [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFinish" object:nil userInfo:userInfo];
+                                       });
+                                       
                                    }
-                               }];
-       
+                                   else
+                                   {
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           //notification post a notification ThreadFinish with filePath
+                                           NSDictionary *userInfo = [NSDictionary dictionaryWithObject:filePath forKey:@"filePath"];
+                                           [[NSNotificationCenter defaultCenter] postNotificationName: @"DownloadThreadFail" object:nil userInfo:userInfo];
+                                       });
+                                       
+                                   }
+                                }];
+    
+        
     }else {
         NSLog(@"filePath is nil");
     }
+    
     
 }
 
@@ -111,42 +137,87 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
 - (BOOL) startDownload:(NSURL *)filaPath{
     BOOL downloaded = false;
     
+    if ([[PreferenceController preferenceSubType]isEqual: @"ASS"]
+        | [[PreferenceController preferenceSubType] isEqual:@"BOTH"]) {
+        NSLog(@"ass or both is called");
+            for (int i = 0; i < [linkType count]; i++) {
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+                
+                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
+                    // Start downloading from 'Link', which is get from key 'Ext'.
+                    if ([self download:[dict_l objectForKey:@"Link"]
+                                filePath:filaPath
+                               extention:@"ass"])
+                    {
+                        // Mark downloaded is ture, if ASS subtitle available.
+                        downloaded = true;
+                        break;
+                    }
+                }
+                
+            }
+        
+        // If ASS subtitle is not available.
+            if (!downloaded | [[PreferenceController preferenceSubType] isEqual:@"BOTH"]) {
+            NSLog(@"srt in ass or both is called %d",downloaded);
+                for (int i = 0; i < [linkType count]; i++) {
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+
+                    if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
+                        if ([self download:[dict_l objectForKey:@"Link"]
+                                   filePath:filaPath
+                                   extention:@"srt"])
+                            {
+                                downloaded = true;
+                                break;
+                            }
+                    }
+
+                }
+            }
+        
+    } else if ([[PreferenceController preferenceSubType]isEqual:@"SRT"]) {
+        NSLog(@"srt is called");
         for (int i = 0; i < [linkType count]; i++) {
             NSDictionary *dict_l = [linkType objectAtIndex:i];
             
-            if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
+            if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
                 // Start downloading from 'Link', which is get from key 'Ext'.
-                [self download:[dict_l objectForKey:@"Link"]
-                            filePath:filaPath
-                           extention:@"ass"];
-                // Mark downloaded is ture, if ASS subtitle available.
-                downloaded = true;
-                
-                break;
+                if ([self download:[dict_l objectForKey:@"Link"]
+                          filePath:filaPath
+                         extention:@"srt"])
+                {
+                    // Mark downloaded is ture, if ASS subtitle available.
+                    downloaded = true;
+                    break;
+                }
             }
             
         }
-    
-    // If ASS subtitle is not available.
+        
+        // If SRT subtitle is not available.
         if (!downloaded) {
+            NSLog(@"ass in srt is called");
             for (int i = 0; i < [linkType count]; i++) {
-            NSDictionary *dict_l = [linkType objectAtIndex:i];
-
-                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"srt"]) {
-                    [self download:[dict_l objectForKey:@"Link"]
-                               filePath:filaPath
-                               extention:@"srt"];
-                    downloaded = true;
-                    
-                    break;
+                NSDictionary *dict_l = [linkType objectAtIndex:i];
+                
+                if ([[dict_l objectForKey:@"Ext"]  isEqual: @"ass"]) {
+                    if ([self download:[dict_l objectForKey:@"Link"]
+                              filePath:filaPath
+                             extention:@"ass"])
+                    {
+                        downloaded = true;
+                        break;
+                    }
                 }
-
+                
             }
         }
+    }
     return downloaded;
 }
 
-- (void)download:(NSString*)URL
+- (BOOL)download:(NSString*)URL
         filePath:(NSURL *)filePath
        extention:(NSString *)ext {
     
@@ -157,16 +228,22 @@ static char * shooterURL = "http://shooter.cn/api/subapi.php?";
     NSLog(@"filenale: %@", fileName);
     NSLog(@"download_url: %@", downloadURL);
     
-    NSData *subData = [NSData dataWithContentsOfURL:downloadURL];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:downloadURL];
     
-    NSError *error = nil;
+    NSURLResponse * response = nil;
+    NSError * connectionError = nil;
+    NSData*subData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+    
+	if (subData==nil) return false;
+    NSError *error=nil;
     BOOL written = [subData writeToURL:[NSURL URLWithString:fileName]
                              options:0
                                error:&error];
     if (!written) {
         NSLog(@"write failed: %@", [error localizedDescription]);
+        return false;
     }
-    
+    return true;
 }
 
 

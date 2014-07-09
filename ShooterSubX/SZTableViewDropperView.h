@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SZTableViewDropperView : NSTableView
+@interface SZTableViewDropperView : NSTableView {
+    
+}
+
 
 @end

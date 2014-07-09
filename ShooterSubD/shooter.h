@@ -18,14 +18,13 @@
 @interface shooter : NSObject
 
 
-@property NSString * videoHash;
-@property NSDictionary * dict;
-@property NSString * encodedURL;
-@property NSURL *downloadURL;
-@property NSMutableArray * linkType;
-@property NSMutableData * Data;
-//@property NSURLConnection * connection;
-@property NSString* fileName;
+@property  NSString * videoHash;
+@property  NSDictionary * dict;
+@property  NSString * encodedURL;
+@property  NSURL *downloadURL;
+@property  NSMutableArray * linkType;
+@property  NSMutableData * Data;
+@property  NSString* fileName;
 
 
 // Shooter subtitle API URL.
@@ -38,7 +37,7 @@
 - (BOOL)startDownload:(NSURL *)filaPath;
 
 // Real downloading.
-- (void)download:(NSString *)URL
+- (BOOL)download:(NSString *)URL
         filePath:(NSURL *)filePath
        extention:(NSString *)ext;
 
