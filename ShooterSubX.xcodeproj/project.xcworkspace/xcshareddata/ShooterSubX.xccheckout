@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>073755F0-1302-4017-87DC-0F6122292D2C</string>
+	<string>803AC165-7EA4-46C2-922A-1BC7CBB18D67</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ShooterSubX</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C029B0EB-BC68-4C35-9C35-29C3BB3CA130</key>
-		<string>https://github.com/gogozs/ShooterSubX.git</string>
+		<key>2856BB7C-B4B2-4904-9329-827923D0EABC</key>
+		<string>https://github.com/whmsysu/ShooterSubX.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ShooterSubX.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C029B0EB-BC68-4C35-9C35-29C3BB3CA130</key>
+		<key>2856BB7C-B4B2-4904-9329-827923D0EABC</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/gogozs/ShooterSubX.git</string>
+	<string>https://github.com/whmsysu/ShooterSubX.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C029B0EB-BC68-4C35-9C35-29C3BB3CA130</string>
+	<string>2856BB7C-B4B2-4904-9329-827923D0EABC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C029B0EB-BC68-4C35-9C35-29C3BB3CA130</string>
+			<string>2856BB7C-B4B2-4904-9329-827923D0EABC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ShooterSubX_develop</string>
+			<string>ShooterSubX</string>
 		</dict>
 	</array>
 </dict>
