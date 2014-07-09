@@ -16,21 +16,21 @@ ShooterSubX
 - 点击 `Download all` 下载字幕。
 
 ## Download:
+
 请移步 [Releases](https://github.com/gogozs/ShooterSubX/releases)
-=======
 
 ## With special thanks to:   
 - [Shooter.cn](shooter.cn)
 
-感谢射手网提供的 API
+  感谢射手网提供的 API
 
 - [FileLister](https://github.com/dwkns/FileLister) 
 
-参考了这个项目的 GUI。
+  参考了这个项目的 GUI。
 
 - [ShooterSubPyDownloader](https://github.com/magic282/ShooterSubPyDownloader)
 
-仿照了这个 Python 代码的实现。
+  仿照了这个 Python 代码的实现。
 
 ## Contributors:  
 
