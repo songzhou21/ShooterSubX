@@ -21,6 +21,26 @@
 {
     return YES;
 }
+/**
+ *  appDelegate that perform that reshow of the window when the user press close button on the left up corner
+ *
+ *  @param theApplication theApplication description
+ *  @param flag           if the app find any visible window
+ *
+ *  @return if we need to perform the normal task
+ */
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+	if (flag) {
+		return NO;
+	}
+    else
+	{
+        [self.window makeKeyAndOrderFront:self];
+        return YES;
+	}
+    
+}
 
 -(IBAction)showPreferencePanel:(id)sender {
     if (!preferenceController) {
