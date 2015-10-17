@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.7"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="SZAppDelegate">
             <connections>
                 <outlet property="window" destination="5o6-Mx-X8Y" id="VhL-mb-PZw"/>
@@ -124,12 +124,12 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="ShooterSubX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="5o6-Mx-X8Y">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="5o6-Mx-X8Y">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="746" y="158" width="533" height="363"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="496" height="417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <value key="minSize" type="size" width="496" height="363"/>
             <value key="maxSize" type="size" width="700" height="560"/>
             <view key="contentView" id="re9-AQ-Edy">
                 <rect key="frame" x="0.0" y="0.0" width="533" height="363"/>
@@ -138,14 +138,15 @@
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybF-rX-70e">
                         <rect key="frame" x="0.0" y="40" width="533" height="308"/>
                         <clipView key="contentView" id="Ee8-q6-DgN">
-                            <rect key="frame" x="1" y="17" width="531" height="290"/>
+                            <rect key="frame" x="1" y="0.0" width="531" height="307"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="W95-o2-D01" id="pbH-Dr-Dsa" userLabel="Table View Dropper" customClass="SZTableViewDropperView">
-                                    <rect key="frame" x="0.0" y="0.0" width="531" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="531" height="284"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="fileName" width="450.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
@@ -181,23 +182,29 @@
                                     </connections>
                                 </tableView>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
+                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fFc-o1-ZGW">
                             <rect key="frame" x="1" y="302" width="458" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="wHx-9V-tfl">
                             <rect key="frame" x="242" y="17" width="15" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <tableHeaderView key="headerView" id="W95-o2-D01">
-                            <rect key="frame" x="0.0" y="0.0" width="531" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="531" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
                         <rect key="frame" x="4" y="3" width="92" height="32"/>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="移除项目" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VC5-bm-GaI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="STHeitiSC-Light"/>
@@ -208,6 +215,7 @@
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
                         <rect key="frame" x="437" y="3" width="92" height="32"/>
+                        <animations/>
                         <buttonCell key="cell" type="push" title="下载全部" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8HP-kE-0MT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="STHeitiSC-Light"/>
@@ -227,6 +235,7 @@
                     <constraint firstItem="eA4-FC-snI" firstAttribute="leading" secondItem="re9-AQ-Edy" secondAttribute="leading" constant="10" id="yRO-40-hAI"/>
                     <constraint firstAttribute="trailing" secondItem="ybF-rX-70e" secondAttribute="trailing" id="zKV-br-hx8"/>
                 </constraints>
+                <animations/>
             </view>
         </window>
     </objects>

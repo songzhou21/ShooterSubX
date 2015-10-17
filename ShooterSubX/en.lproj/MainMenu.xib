@@ -125,11 +125,11 @@
             </items>
         </menu>
         <window title="ShooterSubX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="5o6-Mx-X8Y">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="727" y="114" width="550" height="409"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <value key="minSize" type="size" width="496" height="417"/>
+            <value key="minSize" type="size" width="496" height="409"/>
             <value key="maxSize" type="size" width="700" height="560"/>
             <view key="contentView" id="re9-AQ-Edy">
                 <rect key="frame" x="0.0" y="0.0" width="550" height="409"/>
@@ -202,8 +202,8 @@
                             <animations/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
-                        <rect key="frame" x="4" y="3" width="121" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
+                        <rect key="frame" x="4" y="3" width="119" height="32"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Remove item" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VC5-bm-GaI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -213,8 +213,8 @@
                             <action selector="remove:" target="a3p-nF-DZr" id="r2S-8p-IZD"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
-                        <rect key="frame" x="426" y="3" width="120" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
+                        <rect key="frame" x="428" y="3" width="118" height="32"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Download all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8HP-kE-0MT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
