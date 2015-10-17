@@ -1,0 +1,15 @@
+PODS:
+  - Crashlytics-OSX (3.3.4)
+  - Fabric-OSX (1.5.5):
+    - Fabric-OSX/Base (= 1.5.5)
+  - Fabric-OSX/Base (1.5.5)
+
+DEPENDENCIES:
+  - Crashlytics-OSX (~> 3.3)
+  - Fabric-OSX (~> 1.5)
+
+SPEC CHECKSUMS:
+  Crashlytics-OSX: bd34ff8cea31a8a707583f4de2f9aabdd98d4034
+  Fabric-OSX: 4e9c65e093eaaa536c89e801ce20065c14d65f1b
+
+COCOAPODS: 0.39.0
