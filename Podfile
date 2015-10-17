@@ -8,6 +8,8 @@ target 'ShooterSubX' do
 #Crash Reports
 pod 'Fabric-OSX', '~> 1.5'
 pod 'Crashlytics-OSX', '~> 3.3'
+
+pod 'Sparkle', '~> 1.10'
 end
 
 target 'ShooterSubXTests' do
