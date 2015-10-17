@@ -10,6 +10,7 @@
 #import "PreferenceController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "Countly.h"
 
 @implementation SZAppDelegate
 

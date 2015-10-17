@@ -10,6 +10,7 @@ pod 'Fabric-OSX', '~> 1.5'
 pod 'Crashlytics-OSX', '~> 3.3'
 
 pod 'Sparkle', '~> 1.10'
+pod 'Countly', '~> 15.06'
 end
 
 target 'ShooterSubXTests' do
