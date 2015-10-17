@@ -15,12 +15,6 @@
 
 @interface hashMD5 : NSObject
 
-@property unsigned long long length;
-@property NSMutableArray * temp;
-@property NSFileHandle *fh;
-@property NSData *buff;
-
-
 - (NSString *)hash_MD5:(NSURL *)filePath;
 
 @end
