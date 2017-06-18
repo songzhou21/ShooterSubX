@@ -24,3 +24,13 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 #Pods/
+=======
+
+ShooterSubX.xcodeproj/project.xcworkspace/xcshareddata/ShooterSubX.xccheckout
+
+ShooterSubX.xcodeproj/project.xcworkspace/xcshareddata/ShooterSubX.xccheckout
+
+ShooterSubX.xcodeproj/project.xcworkspace/xcuserdata/song.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xccheckout
+Pods

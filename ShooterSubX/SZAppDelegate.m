@@ -8,6 +8,9 @@
 
 #import "SZAppDelegate.h"
 #import "PreferenceController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import "Countly.h"
 
 @implementation SZAppDelegate
 
@@ -31,6 +34,10 @@
  */
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
+    // add CrashLytics
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"NSApplicationCrashOnExceptions": @YES }];
+    [Fabric with:@[[Crashlytics class]]];
+
 	if (flag) {
 		return NO;
 	}

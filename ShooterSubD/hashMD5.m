@@ -9,49 +9,41 @@
 #import "hashMD5.h"
 #import "NSData_MD5.h"
 
-@implementation hashMD5:NSObject
-@synthesize length, temp, fh, buff;
+@interface hashMD5 ()
+    
+@property unsigned long long length;
+@property NSFileHandle *fileHandler;
+@property NSData *buffer;
 
-- (NSString *)hash_MD5:(NSURL *)filePath {
-    
-    // Store each section of hash value.
-    temp = [NSMutableArray array];
-    
-    
+
+@end
+
+@implementation hashMD5:NSObject
+
+- (NSString *)hash_MD5:(NSURL *)filePath
+{
     // Read file from path.
-    fh = [NSFileHandle fileHandleForReadingFromURL:filePath error:NULL];
+    self.fileHandler = [NSFileHandle fileHandleForReadingFromURL:filePath error:NULL];
    
-    
-    if (fh) {
+    if (self.fileHandler) {
         // Length of file.
-        length = [fh seekToEndOfFile];
+        self.length = [self.fileHandler seekToEndOfFile];
+        NSArray *fileOfffset= @[@"4096", [NSNumber numberWithLongLong:self.length * 2/3], [NSNumber numberWithLongLong:self.length * 1/3], [NSNumber numberWithLongLong:self.length - 8192]];
+        NSUInteger readLength = 4096;
+        NSMutableArray *resultString = [NSMutableArray new];
         
-        // Hash 4K data at 4K position.
-        [fh seekToFileOffset:4096];
-        buff = [fh readDataOfLength:4096];
-        // Calculates hash value of this section and save it to temp array.
-        [temp addObject:[buff MD5]];
+        for (NSNumber *offset in fileOfffset) {
+            [self.fileHandler seekToFileOffset:[offset longLongValue]];
+            self.buffer = [self.fileHandler readDataOfLength:readLength];
+            [resultString addObject:[self.buffer MD5]];
+        }
         
-        // At 2 / 3 length of file.
-        [fh seekToFileOffset:length * 2 / 3];
-        buff = [fh readDataOfLength:4096];
-        [temp addObject:[buff MD5]];
-        
-        // At 1 / 3 length of file.
-        [fh seekToFileOffset:length * 1 / 3];
-        buff = [fh readDataOfLength:4096];
-        [temp addObject:[buff MD5]];
-        
-        // At length - 8K position;
-        [fh seekToFileOffset:length - 8192];
-        buff = [fh readDataOfLength:4096];
-        [temp addObject:[buff MD5]];
         
         // Convert the array to string, separated with semicolon.
-        return [temp componentsJoinedByString:@";"];
+        return [resultString componentsJoinedByString:@";"];
         
     } else {
-        NSLog(@"fileHandle is nil");
+        NSLog(@"fileHandler is nil");
         return nil;
     }
     

@@ -1,0 +1,21 @@
+PODS:
+  - Countly (15.06.01)
+  - Crashlytics-OSX (3.3.4)
+  - Fabric-OSX (1.5.5):
+    - Fabric-OSX/Base (= 1.5.5)
+  - Fabric-OSX/Base (1.5.5)
+  - Sparkle (1.11.0)
+
+DEPENDENCIES:
+  - Countly (~> 15.06)
+  - Crashlytics-OSX (~> 3.3)
+  - Fabric-OSX (~> 1.5)
+  - Sparkle (~> 1.10)
+
+SPEC CHECKSUMS:
+  Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
+  Crashlytics-OSX: bd34ff8cea31a8a707583f4de2f9aabdd98d4034
+  Fabric-OSX: 4e9c65e093eaaa536c89e801ce20065c14d65f1b
+  Sparkle: cf10103ef35fd89caa35373bfd772c5d6f9c7d73
+
+COCOAPODS: 0.39.0
