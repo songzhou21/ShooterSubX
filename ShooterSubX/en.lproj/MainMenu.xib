@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -124,11 +125,11 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="ShooterSubX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="5o6-Mx-X8Y">
-            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="ShooterSubX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="5o6-Mx-X8Y">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="727" y="114" width="550" height="409"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <value key="minSize" type="size" width="496" height="409"/>
             <value key="maxSize" type="size" width="700" height="560"/>
             <view key="contentView" id="re9-AQ-Edy">
@@ -144,12 +145,11 @@
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="W95-o2-D01" id="pbH-Dr-Dsa" userLabel="Table View Dropper" customClass="SZTableViewDropperView">
                                     <rect key="frame" x="0.0" y="0.0" width="548" height="330"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="fileName" width="467.25390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
+                                        <tableColumn identifier="fileName" width="466.75390625" minWidth="40" maxWidth="1000" id="3T5-2N-zh8">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -182,29 +182,22 @@
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <animations/>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fFc-o1-ZGW">
                             <rect key="frame" x="1" y="302" width="458" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="wHx-9V-tfl">
                             <rect key="frame" x="242" y="17" width="15" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                         <tableHeaderView key="headerView" id="W95-o2-D01">
                             <rect key="frame" x="0.0" y="0.0" width="548" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-FC-snI">
                         <rect key="frame" x="4" y="3" width="119" height="32"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Remove item" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VC5-bm-GaI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -215,7 +208,6 @@
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RK4-4d-tbl">
                         <rect key="frame" x="428" y="3" width="118" height="32"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Download all" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8HP-kE-0MT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -235,7 +227,6 @@
                     <constraint firstItem="eA4-FC-snI" firstAttribute="leading" secondItem="re9-AQ-Edy" secondAttribute="leading" constant="10" id="yRO-40-hAI"/>
                     <constraint firstAttribute="trailing" secondItem="ybF-rX-70e" secondAttribute="trailing" id="zKV-br-hx8"/>
                 </constraints>
-                <animations/>
             </view>
             <point key="canvasLocation" x="41" y="212.5"/>
         </window>

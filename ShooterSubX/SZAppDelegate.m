@@ -12,6 +12,7 @@
 
 @implementation SZAppDelegate
 
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];

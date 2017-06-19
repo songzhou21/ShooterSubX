@@ -135,6 +135,7 @@
     [self setNeedsDisplay: YES];
     NSLog(@"drag exit in SZTableViewDropper.h");
 }
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
