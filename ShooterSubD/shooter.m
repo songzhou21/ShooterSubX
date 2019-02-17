@@ -12,7 +12,7 @@
 @implementation shooter
 
 // Shooter API.
-static char * shooterURL = "http://shooter.cn/api/subapi.php?";
+static char * shooterURL = "https://www.shooter.cn/api/subapi.php?";
 
 
 @synthesize videoHash, dict, encodedURL, linkType, Data;
